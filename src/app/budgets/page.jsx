@@ -1,12 +1,28 @@
 "use client"
-import React from 'react'
+import axios from 'axios';
+import React,{useEffect,useState} from 'react'
 
-function page() {
+function Budgets() {
+    const[budgets,setBudgets]=useState({});
+
+
+    useEffect(() => {
+        try {
+            async function fetchData() {
+                const response = await axios.get("/api/budget/getBudgets");
+                setBudgets(response.data);
+            }
+            fetchData();
+        } catch (error) {
+            console.log(error.message)
+        }
+    }, [])
+    
     return (
-        <div>
+        <main className='text-black'>
             
-        </div>
+        </main>
     )
 }
 
-export default page
+export default Budgets
