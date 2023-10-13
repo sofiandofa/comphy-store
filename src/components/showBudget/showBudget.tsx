@@ -1,91 +1,60 @@
-"use client"
+
 import { connect } from '@/dbConfig/dbConfig'
-import Budget from '@/models/budgetModel';
-import axios from 'axios';
-import React, { useState,useEffect } from 'react'
 
 
 
 connect();
 
 
-const  ShowBudget=({budgets}:any)=> {
+const  ShowBudget=({budget}:any)=> {
+
+
+    return (
+            <div>
+                <div>
+                    <section className='p-4 rounded-sm  shadow-md'>
+                        <div className='border border-green-500 flex flex-row  gap-5 px-2 py-1 mb-2 rounded-sm'>
+                            <h3>{budget.name}</h3>
+                            <h3> <span className='text-green-800'>{budget.value}</span> $</h3>
+                        </div>
+                        <div>
+                            <select name="" id="" className='w-full text-center'>
+                                {
+                                    budget.expenseNames.map((name:String,index:any)=>{
+                                        return(
+                                            <option key={index} value="">{name}</option>
+                                        )
+                                    })
+                                }
+                                
+                            </select>
+                        </div>
+                    </section>
+                </div>
+                <button
+                    >
+                        add expense
+                </button>
+            </div>
+        )
+    
+}
+
+export default ShowBudget;
+
+
+/*
+model
     const [toggle, setToggle] = useState(false)
     const[expenseNames,setExpenseNames]=useState([]);
     const[expenseValues,setExpenseValues]=useState([]);
-
+    
 
     const [expense, setExpense] = useState({
         expenseName:"",
         expenseValue:"",
         id:"",
     })
-
-    useEffect(() => {
-        async function fetchData() {
-            // You can await here
-            const response = await axios.get("/api/budget/getBudgets");
-            setExpenseNames(response.data.data.expenseNames)
-            setExpenseValues(response.data.data.expenseValues)
-
-        }
-        fetchData();
-        const expenseTotal=():number=>{
-            let total:number=0;
-            const values=expenseValues.forEach(e=>{
-                return total+=e;
-            })
-            return total;
-            
-        }
-    }, [])
-
-    useEffect(() => {
-        async function fetchData() {
-            // You can await here
-            const response = await axios.get("/api/budget/getBudgets");
-            setExpenseNames(response.data.data.expenseNames)
-            setExpenseValues(response.data.data.expenseValues)
-        }
-        fetchData();
-    }, [toggle])
-    
-
-    const addExpense=async(e:React.FormEvent<HTMLFormElement>)=>{
-        await axios.post("/api/budget/addExpenses",expense);
-        setToggle(false);
-
-    }
-
-
-    const content=budgets.map((budget:any)=>{
-        return (
-            <div key={budget._id}>
-                <div>
-                        <section className='p-4 rounded-sm  shadow-md'>
-                            <div className='border border-green-500 flex flex-row  gap-5 px-2 py-1 mb-2 rounded-sm'>
-                                <h3>{budget.name}</h3>
-                                <h3> <span className='text-green-800'>{budget.value}</span> $</h3>
-                            </div>
-                            <div>
-                                <select name="" id="" className='w-full text-center'>
-                                    {
-                                        expenseNames.map((expenseName,index)=>{
-                                            return(
-                                                <option key={index} value="">{expenseName}</option>
-                                            )
-                                        })
-                                    }
-                                    
-                                </select>
-                            </div>
-                        </section>
-                </div>
-                <button
-                    onClick={()=>setToggle(true)}
-                    >
-                        add expense
-                </button>
                 {
                     toggle&&
 
@@ -98,11 +67,10 @@ const  ShowBudget=({budgets}:any)=> {
                             onChange={(e)=>setExpense({...expense,expenseValue:e.target.value})}/>
                     </form>)
                 }
+                
+                const addExpense=async(e:React.FormEvent<HTMLFormElement>)=>{
+                await axios.post("/api/budget/addExpenses",expense);
+                setToggle(false);
+    }
 
-            </div>
-        )
-    })
-    return content;
-}
-
-export default ShowBudget;
+*/
