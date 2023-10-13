@@ -10,7 +10,7 @@ export async function GET(request:NextRequest){
     try {
         const budgets=await Budget;
 
-        return NextResponse.json({data:budgets,})
+        return NextResponse.json({data:budgets})
     } catch (error) {
         
     }
