@@ -2,7 +2,7 @@
 import { connect } from '@/dbConfig/dbConfig'
 import Budget from '@/models/budgetModel';
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 
 
 
@@ -11,15 +11,50 @@ connect();
 
 const  ShowBudget=({budgets}:any)=> {
     const [toggle, setToggle] = useState(false)
+    const[expenseNames,setExpenseNames]=useState([]);
+    const[expenseValues,setExpenseValues]=useState([]);
+
+
     const [expense, setExpense] = useState({
         expenseName:"",
         expenseValue:"",
         id:"",
     })
 
+    useEffect(() => {
+        async function fetchData() {
+            // You can await here
+            const response = await axios.get("/api/budget/getBudgets");
+            setExpenseNames(response.data.data.expenseNames)
+            setExpenseValues(response.data.data.expenseValues)
+
+        }
+        fetchData();
+        const expenseTotal=():number=>{
+            let total:number=0;
+            const values=expenseValues.forEach(e=>{
+                return total+=e;
+            })
+            return total;
+            
+        }
+    }, [])
+
+    useEffect(() => {
+        async function fetchData() {
+            // You can await here
+            const response = await axios.get("/api/budget/getBudgets");
+            setExpenseNames(response.data.data.expenseNames)
+            setExpenseValues(response.data.data.expenseValues)
+        }
+        fetchData();
+    }, [toggle])
+    
 
     const addExpense=async(e:React.FormEvent<HTMLFormElement>)=>{
-        axios.post("/api/budget/addExpenses",expense)
+        await axios.post("/api/budget/addExpenses",expense);
+        setToggle(false);
+
     }
 
 
@@ -34,8 +69,14 @@ const  ShowBudget=({budgets}:any)=> {
                             </div>
                             <div>
                                 <select name="" id="" className='w-full text-center'>
-                                    <option value="">expense-1</option>
-                                    <option value="">expense-2</option>
+                                    {
+                                        expenseNames.map((expenseName,index)=>{
+                                            return(
+                                                <option key={index} value="">{expenseName}</option>
+                                            )
+                                        })
+                                    }
+                                    
                                 </select>
                             </div>
                         </section>
