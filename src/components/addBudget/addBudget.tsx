@@ -24,7 +24,7 @@ function AddBudget() {
     return (
         <div className='container mx-auto px-2 py-9'>
             <div className='flex flex-col justify-center items-center'>
-                <h1 className='font-bold  text-4xl mb-5'>new budget</h1>
+                <h1 className='font-bold  text-4xl mb-5'>create budget</h1>
                 <main className={`${""}`}>
                     <form
                     onSubmit={addBudget}

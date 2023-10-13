@@ -12,23 +12,13 @@ const userschema=new mongoose.Schema({
         required:[true,'please provide an'],
         unique:true,
     },
-    expenseName:{
-        type:String,
-        required:[true,'please provide a budget name'],
-        unique:true,
-    },
-    expenseValue:{
-        type:Number,
-        required:[true,'please provide an'],
-        unique:true,
-    },
-    
+    expenseNames:[String],
+    expenseValues:[Number],
     isFinished:{
         type:Boolean,
         default:false,
     },
     day:Date,
-
 })
 
 const Budget=mongoose.models.budgets ||mongoose.model("budgets",userschema);

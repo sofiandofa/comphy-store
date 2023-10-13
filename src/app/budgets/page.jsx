@@ -19,6 +19,7 @@ function Budgets() {
         }
     }, [])
     
+
     return (
         <main className='flex flex-col sm:flex-row  items-center justify-between gap-6 container mx-auto mt-11'>
             
