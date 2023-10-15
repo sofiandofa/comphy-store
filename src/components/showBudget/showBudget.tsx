@@ -8,19 +8,19 @@ connect();
 
 const  ShowBudget=({budget}:any)=> {
 
-
+const{expenseNames,name,value}=budget
     return (
             <div>
                 <div>
                     <section className='p-4 rounded-sm  shadow-md'>
                         <div className='border border-green-500 flex flex-row  gap-5 px-2 py-1 mb-2 rounded-sm'>
-                            <h3>{budget.name}</h3>
-                            <h3> <span className='text-green-800'>{budget.value}</span> $</h3>
+                            <h3>{name}</h3>
+                            <h3> <span className='text-green-800'>{value}</span> $</h3>
                         </div>
                         <div>
                             <select name="" id="" className='w-full text-center'>
                                 {
-                                    budget.expenseNames.map((name:String,index:any)=>{
+                                    expenseNames.map((name:String,index:any)=>{
                                         return(
                                             <option key={index} value="">{name}</option>
                                         )

@@ -18,6 +18,7 @@ function Budgets() {
             console.log(error.message)
         }
     }, [])
+
     
 
     return (
@@ -25,7 +26,7 @@ function Budgets() {
             
             {budgets.map(budget=>{
                 return(
-                    <ShowBudget key={budget._id} budget={budget}/>
+                    <ShowBudget key={budget._id} budget={budget} />
                 )
             })}
         </main>
