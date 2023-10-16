@@ -1,12 +1,17 @@
+
+
 import mongoose from "mongoose";
+
+
 
 
 
 export async function connect(){
     try {
-        mongoose.connect(process.env.MONGO_URL!)
-        const connection=mongoose.connection;
-        connection.on("connect",()=>{
+        const uri:string=process.env.MONGO_URL as  string;
+        mongoose.connect(uri!)
+        const connection= mongoose.connection;
+        connection.on("connected",()=>{
             console.log("mongoose connect succsefull");
         })
         connection.on("error",(err)=>{
@@ -18,4 +23,5 @@ export async function connect(){
         console.log("")
     }
 }
+
 

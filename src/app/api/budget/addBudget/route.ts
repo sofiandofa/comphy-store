@@ -2,17 +2,20 @@ import { connect } from "@/dbConfig/dbConfig";
 import Budget from "@/models/budgetModel";
 import { NextRequest,NextResponse } from "next/server";
 
-connect();
 
+connect();
 export async  function  POST(request:NextRequest){
     try {
+
         const reqBody=await request.json();
-        const{budgetName,budgetValue}=reqBody;
+        console.log(reqBody)
+        const{budgetname,budgetvalue}=reqBody;
         const newBudget=new Budget({
-            budgetName,
-            budgetValue,
+            budgetname,
+            budgetvalue:budgetvalue.toString(),
         })
-        await  newBudget.save();
+        console.log(reqBody)
+        const savedUser=await  newBudget.save();
         return NextResponse.json({message:"user created succesfully" ,success:true,savedBudget:true})
     } catch (error:any) {
 

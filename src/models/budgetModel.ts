@@ -2,18 +2,18 @@ import mongoose from "mongoose";
 
 
 const userschema=new mongoose.Schema({
-    budgetName:{
+    budgetname:{
         type:String,
         required:[true,'please provide a budget name'],
         unique:true,
     },
-    budgetValue:{
-        type:Number,
+    budgetvalue:{
+        type:String,
         required:[true,'please provide an'],
         unique:true,
     },
-    expenseNames:[String],
-    expenseValues:[Number],
+    expensenames:[String],
+    expensevalues:[Number],
     isFinished:{
         type:Boolean,
         default:false,

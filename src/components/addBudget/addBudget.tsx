@@ -8,18 +8,18 @@ import Link from 'next/link';
 
 function AddBudget() {
     const [budget, setBudget] = useState({
-        budgetName:"",
-        budgetValue:"",
+        budgetname:"",
+        budgetvalue:"",
     });
 
     const  addBudget=async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         await  axios.post("/api/budget/addBudget",budget);
         console.log(budget)
-        setBudget({
-            budgetName: "",
-            budgetValue:""
-        })
+        // setBudget({
+        //     budgetname: "",
+        //     budgetvalue:""
+        // })
     }
     return (
         <div className='container mx-auto px-2 py-9'>
@@ -38,8 +38,8 @@ function AddBudget() {
                                 <input
                                 className='px-2 py-1'
                                 id=''
-                                    type="text" value={budget.budgetName} 
-                                    onChange={(e)=>setBudget({...budget,budgetName:e.target.value})} />
+                                    type="text" value={budget.budgetname} 
+                                    onChange={(e)=>setBudget({...budget,budgetname:e.target.value})} />
                             </div>
                             <div>
                                 <label htmlFor=""
@@ -47,8 +47,8 @@ function AddBudget() {
                                 >budget value</label>
                                 <input
                                 className='px-2 py-1'
-                                    type="text" value={budget.budgetValue} 
-                                    onChange={(e)=>setBudget({...budget,budgetValue:(e.target.value)})}
+                                    type="text" value={budget.budgetvalue}
+                                    onChange={(e)=>setBudget({...budget,budgetvalue:(e.target.value)})}
                                 />
                             </div>
                         </div>

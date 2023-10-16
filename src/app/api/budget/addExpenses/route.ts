@@ -1,6 +1,6 @@
 import { connect } from "@/dbConfig/dbConfig";
 import Budget from "@/models/budgetModel";
-import { NextRequest } from "next/server";
+import { NextRequest ,NextResponse} from "next/server";
 
 
 connect();
@@ -12,7 +12,7 @@ export async function POST(request:NextRequest) {
         const budget=await Budget.findById({id});
         budget.expenseNames[budget.expenseNames.length]=expenseName;
         budget.expenseValues[budget.expenseValues.length]=expenseValue;
-
+        return NextResponse.json({message:"budget isadded"},{status:201})
 
 
     } catch (error:any) {

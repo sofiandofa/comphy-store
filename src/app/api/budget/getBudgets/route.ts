@@ -5,10 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 connect();
-export async function GET(request:NextRequest){
+export async function GET(){
     
     try {
-        const budgets=await Budget;
+        const budgets=await Budget.find();
 
         return NextResponse.json({data:budgets})
     } catch (error) {
