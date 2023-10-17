@@ -19,14 +19,13 @@ function Budgets() {
         }
     }, [])
 
-    
 
     return (
         <main className='flex flex-col sm:flex-row  items-center justify-between gap-6 container mx-auto mt-11'>
             
             {budgets.map(budget=>{
                 return(
-                    <ShowBudget key={budget._id} budget={budget} />
+                    <ShowBudget key={budget._id} budget={budget}   />
                 )
             })}
         </main>

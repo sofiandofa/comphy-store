@@ -5,7 +5,6 @@ import styles  from "./addBudget.module.css"
 import axios from 'axios';
 import Link from 'next/link';
 
-
 function AddBudget() {
     const [budget, setBudget] = useState({
         budgetname:"",
@@ -15,7 +14,6 @@ function AddBudget() {
     const  addBudget=async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         await  axios.post("/api/budget/addBudget",budget);
-        console.log(budget)
         // setBudget({
         //     budgetname: "",
         //     budgetvalue:""
@@ -31,26 +29,29 @@ function AddBudget() {
                         className='flex flex-col items-center'
                     >
                         <div className='flex  flex-col md:flex-row justify-between gap-4 mb-5'>
-                            <div>
+                            
                                 <label htmlFor="" 
-                                className='font-bold text-slate-500 mr-2 border border-blue-500 rounded-sm px-2 py-1'>
-                                    budget name</label>
-                                <input
-                                className='px-2 py-1'
-                                id=''
-                                    type="text" value={budget.budgetname} 
-                                    onChange={(e)=>setBudget({...budget,budgetname:e.target.value})} />
-                            </div>
-                            <div>
+                                    className='font-bold text-slate-500 mr-2 border border-blue-500 rounded-sm px-2 py-1'
+                                >
+                                    budget name
+                                    <input
+                                        className='px-2 py-1'
+                                        id=''
+                                            type="text" value={budget.budgetname} 
+                                        onChange={(e)=>setBudget({...budget,budgetname:e.target.value})} />
+                                </label>
+
                                 <label htmlFor=""
-                                className='font-bold text-slate-500 mr-2 border border-blue-500 rounded-sm px-2 py-1'
-                                >budget value</label>
-                                <input
-                                className='px-2 py-1'
-                                    type="text" value={budget.budgetvalue}
-                                    onChange={(e)=>setBudget({...budget,budgetvalue:(e.target.value)})}
-                                />
-                            </div>
+                                    className='font-bold text-slate-500 mr-2 border border-blue-500 rounded-sm px-2 py-1'
+                                >
+                                    budget value
+                                    <input
+                                        className='px-2 py-1'
+                                        type="text" value={budget.budgetvalue}
+                                        onChange={(e)=>setBudget({...budget,budgetvalue:(e.target.value)})}
+                                    />
+                                </label>
+                            
                         </div>
             
                         <button

@@ -8,10 +8,10 @@ connect();
 export async function POST(request:NextRequest) {
     try {
         const reqBody=await request.json();
-        const{id,expenseValue,expenseName}:{id:any,expenseValue:Number,expenseName:String}=reqBody;
+        const{id,expensevalue,expensename}:{id:any,expensevalue:Number,expensename:String}=reqBody;
         const budget=await Budget.findById({id});
-        budget.expenseNames[budget.expenseNames.length]=expenseName;
-        budget.expenseValues[budget.expenseValues.length]=expenseValue;
+        budget.expensenames[budget.expensenames.length]=expensename;
+        budget.expenseValues[budget.expenseValues.length]=expensevalue;
         return NextResponse.json({message:"budget isadded"},{status:201})
 
 
