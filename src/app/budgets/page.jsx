@@ -1,10 +1,13 @@
 "use client"
 import ShowBudget from '@/components/showBudget/showBudget';
+import BudgetProvider, { budgetContext } from '@/context/budget-context';
+
 import axios from 'axios';
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 
 function Budgets() {
     const[budgets,setBudgets]=useState();
+    const expenseData=useContext(budgetContext)
 
 
     useEffect(() => {
@@ -19,16 +22,22 @@ function Budgets() {
         }
     }, [])
 
+    useEffect(() => {
 
+
+    }, [expenseData])
+    
     return (
-        <main className='flex flex-col sm:flex-row  items-center justify-between gap-6 container mx-auto mt-11'>
-            
-            {budgets.map(budget=>{
-                return(
-                    <ShowBudget key={budget._id} budget={budget}   />
-                )
-            })}
-        </main>
+
+        <BudgetProvider>
+            <main className='flex flex-col sm:flex-row  items-center justify-between gap-6 container mx-auto mt-11'>
+                {budgets.map(budget=>{
+                    return(
+                        <ShowBudget key={budget._id} budget={budget}   />
+                    )
+                })}
+            </main>
+        </BudgetProvider>
     )
 }
 

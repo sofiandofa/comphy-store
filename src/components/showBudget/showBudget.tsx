@@ -1,13 +1,13 @@
 "use client"
+import { budgetContext } from '@/context/budget-context';
 import { connect } from '@/dbConfig/dbConfig'
 import React,{useState,useEffect, useContext} from 'react';
-import { budgetContext } from '@/context/budget-context';
 
 connect();
 
 
 const  ShowBudget=({budget}:any)=> {
-    
+    const {expenseDataHandler}=useContext(budgetContext)
     const [toggle, setToggle] = useState(false)
     const[expenseNames,setExpenseNames]=useState([]);
     const[expenseValues,setExpenseValues]=useState([]);
@@ -19,14 +19,15 @@ const  ShowBudget=({budget}:any)=> {
         id:"",
     })
 
-
     const{budgetname,budgetvalue,expensenames,_id}=budget
     
     const addExpense=(e:React.FormEvent<HTMLFormElement>)=>{
-        
+        expenseDataHandler(expense)
     }
-
-
+    useEffect(() => {
+        
+    }, [expense])
+    
 
     return (
             <div>
