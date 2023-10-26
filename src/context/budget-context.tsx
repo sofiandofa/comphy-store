@@ -5,9 +5,10 @@ import React, { useState } from 'react'
 
 export const budgetContext=React.createContext<Budget>( {
     expenseData:{
-            expenseName:""
+        expenseName:""
         ,expenseValue:""
-        ,id:""},
+        ,id:""
+    },
     expenseDataHandler:()=>{}
 });
 

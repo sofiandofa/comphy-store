@@ -14,6 +14,7 @@ function AddBudget() {
     const  addBudget=async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         await  axios.post("/api/budget/addBudget",budget);
+        
         // setBudget({
         //     budgetname: "",
         //     budgetvalue:""

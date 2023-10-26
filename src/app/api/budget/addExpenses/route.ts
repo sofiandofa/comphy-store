@@ -5,7 +5,7 @@ import { NextRequest ,NextResponse} from "next/server";
 
 connect();
 
-export async function POST(request:NextRequest) {
+export async function PUT(request:NextRequest) {
     try {
         const reqBody=await request.json();
         const{id,expensevalue,expensename}:{id:any,expensevalue:Number,expensename:String}=reqBody;

@@ -9,7 +9,6 @@ function Budgets() {
     const[budgets,setBudgets]=useState();
     const expenseData=useContext(budgetContext)
 
-
     useEffect(() => {
         try {
             async function fetchData() {
@@ -22,6 +21,15 @@ function Budgets() {
         }
     }, [])
 
+    const deleteBudget=(id)=>{
+        try {
+            async function fetchData() {
+                const response = await axios.delete("/api/budget/deleteBudget",id);
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
     useEffect(() => {
 
 
@@ -33,7 +41,7 @@ function Budgets() {
             <main className='flex flex-col sm:flex-row  items-center justify-between gap-6 container mx-auto mt-11'>
                 {budgets.map(budget=>{
                     return(
-                        <ShowBudget key={budget._id} budget={budget}   />
+                        <ShowBudget key={budget._id} budget={budget}  deleteBudget={deleteBudget} />
                     )
                 })}
             </main>
